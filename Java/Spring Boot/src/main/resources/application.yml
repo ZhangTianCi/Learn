@@ -1,0 +1,21 @@
+---
+info:
+  name: Demo学习
+logging:
+  pattern:
+    file: logs/config/demo-xx.log #日志存储地址
+
+server:
+  port: 8082         #网站部署端口
+  servlet:
+    context-path: '/'  #网站部署前缀
+
+spring:
+  datasource: #数据库配置
+    username: root
+    password: Pass#word1
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:5723/demo?useSSL=false&characterEncoding=utf8
+
+mybatis:
+  typeAliasesPackage: com.hanhf.demo.domain #Mybatis 实体加载路径
