@@ -1,21 +1,25 @@
 ---
 info:
-  name: DemoÑ§Ï°
+  name: DemoLearn
 logging:
   pattern:
-    file: logs/config/demo-xx.log #ÈÕÖ¾´æ´¢µØÖ·
-
+    file: logs/config/demo-xx.log
 server:
-  port: 8082         #ÍøÕ¾²¿Êğ¶Ë¿Ú
+  port: 8082
   servlet:
-    context-path: '/'  #ÍøÕ¾²¿ÊğÇ°×º
-
+    context-path: '/'
 spring:
-  datasource: #Êı¾İ¿âÅäÖÃ
+  datasource:
     username: root
     password: Pass#word1
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:5723/demo?useSSL=false&characterEncoding=utf8
-
+  freemarker:
+    suffix: .ftl                                                                 #åç¼€å
+    cache: false                                                            #å¯ç”¨ç¼“å­˜
+    enabled: true                                                         #æ˜¯å¦å¯ç”¨
+    charset: UTF-8                                                        #è¾“å‡ºç¼–ç 
+    content-type: text/html                                            #è¾“å‡ºç±»å‹
+    template-loader-path: classpath:/templates/             #æ¨¡æ¿æœªçŸ¥
 mybatis:
-  typeAliasesPackage: com.hanhf.demo.domain #Mybatis ÊµÌå¼ÓÔØÂ·¾¶
+  typeAliasesPackage: com.hanhf.demo.domain #Mybatis
