@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.UserInfoMapper">
+	<!-- 自定义返回结果集 -->
+	<resultMap id="userInfoMap" type="UserInfoBean">
+		<id property="id" column="id" javaType="java.lang.Integer"></id>
+		<result property="name" column="name" javaType="java.lang.String"></result>
+		<result property="password" column="password" javaType="java.lang.String"></result>
+		<result property="account" column="account" javaType="java.lang.Double"></result>
+	</resultMap>
+
+	<insert id="insertUserInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user (name,password,account) values (#{username},#{password},#{account})
+    </insert>
+
+	<update id="updateUserInfo">
+      update t_user set username=#{username},password=#{password},account=#{account} where id=#{id}
+    </update>
+
+	<delete id="deleteUserInfo" parameterType="int">
+     delete from t_user where id=#{id}
+    </delete>
+
+	<select id="selectUserInfoById" parameterType="int" resultMap="userInfoMap">
+     select * from t_user where id=#{id}
+    </select>
+
+	<select id="selectAllUserInfo" resultMap="userInfoMap">
+		SELECT `ui`.id,`ui`.`name`,`a`.address FROM t_userinfo AS`ui`
+		LEFT JOIN t_address AS`a`
+		ON `ui`.id=`a`.userinfo_id
+    </select>
+
+</mapper>
