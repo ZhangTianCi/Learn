@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.AptMapper">
+	<!-- 自定义返回结果集 -->
+	<resultMap id="AptMap" type="AptBean">
+		<id property="id" column="apt_id" javaType="java.lang.Integer"></id>
+		<result property="code" column="TXT_CODE" javaType="java.lang.String"></result>
+		<result property="time" column="DT_DISCOVERY" javaType="java.util.Date"></result>
+		<collection property="caseList" javaType="ArrayList" ofType="com.beans.AptCaseBean"
+					resultMap="com.mapper.AptCaseMapper.AptCaseMap"/>
+		<collection property="imageList" javaType="ArrayList" ofType="com.beans.AptImageBean"
+					resultMap="com.mapper.AptImageMapper.AptImageMap"/>
+	</resultMap>
+	<select id="getById" parameterType="int" resultMap="AptMap">
+		SELECT
+	`a`.`id` AS `apt_id`,
+	`a`.`TXT_CODE`,
+	`a`.`DT_DISCOVERY`,
+	`ac`.`id` AS `apt_case_id`,
+	`ac`.`name` AS `name`,
+	`ac`.`link` AS `link`,
+	`ai`.`id` AS `apt_image_id`,
+	`ai`.`file_name` AS `file_name`
+FROM
+	`t_apt` AS `a`
+	LEFT JOIN `t_apt_case` AS `ac` ON `a`.id = `ac`.apt_id
+	LEFT JOIN `t_apt_image` AS `ai` ON `a`.id = `ai`.apt_id
+		WHERE`a`id=#{id}
+    </select>
+	<select id="getList" resultMap="AptMap">
+		SELECT
+	`a`.`id` AS `apt_id`,
+	`a`.`TXT_CODE`,
+	`a`.`DT_DISCOVERY`,
+	`ac`.`id` AS `apt_case_id`,
+	`ac`.`name` AS `name`,
+	`ac`.`link` AS `link`,
+	`ai`.`id` AS `apt_image_id`,
+	`ai`.`file_name` AS `file_name`
+FROM
+	`t_apt` AS `a`
+	LEFT JOIN `t_apt_case` AS `ac` ON `a`.id = `ac`.apt_id
+	LEFT JOIN `t_apt_image` AS `ai` ON `a`.id = `ai`.apt_id
+	ORDER BY `a`.`id`
+    </select>
+</mapper>

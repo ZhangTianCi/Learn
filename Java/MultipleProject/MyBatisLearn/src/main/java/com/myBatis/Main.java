@@ -7,7 +7,8 @@ public class Main {
 		System.out.println("MyBatisLearn");
 		//Test.insertUser("张天赐", "472546", 11111.0);
 		//System.out.println(UserService.selectUserById(6));
-		System.out.println(UserService.selectAllUser());
-		System.out.println(UserInfoService.selectAllUser());
+		//System.out.println(UserService.selectAllUser());
+		//System.out.println(UserInfoService.selectAllUser());
+		System.out.println(AptService.getList());
 	}
 }

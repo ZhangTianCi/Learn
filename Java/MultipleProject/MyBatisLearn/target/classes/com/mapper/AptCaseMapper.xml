@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.AptCaseMapper">
+	<!-- 自定义返回结果集 -->
+	<resultMap id="AptCaseMap" type="AptCaseBean">
+		<id property="id" column="apt_case_id" javaType="java.lang.Integer"></id>
+		<result property="name" column="name" javaType="java.lang.String"></result>
+		<result property="link" column="link" javaType="java.lang.String"></result>
+	</resultMap>
+	<select id="selectById" parameterType="int" resultMap="AptCaseMap">
+     select * from t_apt_case where id=#{id}
+    </select>
+</mapper>

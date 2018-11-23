@@ -5,7 +5,7 @@
     <title>用户列表</title>
 </head>
 <body>
-<table>
+<table style="border: 1px solid blanchedalmond;">
     <tr>
         <th>ID</th>
         <th>姓名</th>
@@ -14,9 +14,8 @@
     </tr>
     <#if UserList?exists>
         <#list UserList as item>
-
     <tr>
-        <td>${item.id}sdfsdfsdf</td>
+        <td>${item.id}</td>
         <td>${item.name}</td>
         <td>${item.birthday}</td>
         <td>${item.address}</td>

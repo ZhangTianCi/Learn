@@ -1,0 +1,90 @@
+<!DOCTYPE>
+<html style="height:100%;">
+
+<head>
+    <title>D3.js 起步</title>
+    <script src="../d3/d3.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .axis {
+            background-color: cornsilk;
+            color: black;
+            fill: black;
+            stroke: black;
+        }
+
+        .x,
+        .y {
+            color: black;
+            fill: black;
+            stroke: black;
+        }
+    </style>
+</head>
+
+<body style="margin: 0; height:100%;padding: 50px;">
+    <svg id="svg" style="width:100%;height:100%;"></svg>
+    <script>
+        var svg = d3.select("#svg");
+        var width = svg.property('clientWidth'), height = svg.property('clientHeight');
+
+        var basicGroup = svg.append("g");
+
+        var x = d3.scaleBand().range([0, width]).padding(0.4);
+        var y = d3.scaleLinear().range([height, 0]);
+
+        var xAxis = d3.axisBottom(x).tickSize([]).tickPadding(10);
+        var yAxis = d3.axisLeft(y).tickFormat(d3.format(".0%"));
+
+        var dataset = [{ "year": "2015", "value": .77 }, { "year": "2016", "value": .88 }, { "year": "2017", "value": .95 }, { "year": "2018", "value": .90 }];
+
+        x.domain(dataset.map((t) => { return t.year; }));
+        y.domain([0, d3.max(dataset, function (t) { return t.value; }) + 0.1]);
+
+        basicGroup.append("g")
+            .attr("class", "x axis")
+            .style("fill-opacity", .9)
+            .style("stroke-width", ".7")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+        basicGroup.append("g").attr("class", "y axis").call(yAxis);
+        basicGroup.selectAll(".bar")
+            .data(dataset)
+            .enter().append("rect")
+            .attr("class", "bar")
+            .style("display", function (t) { return t.value === null ? "none" : null; })
+            .style("fill", function (t) { if (t.year == "2018") { return "#f26c23"; } else { return "#fbdbca"; } })
+            .attr("x", function (t) { return x(t.year); })
+            .attr("width", x.bandwidth())
+            .attr("y", function (t) { return height; })
+            .attr("height", 0)
+            .transition()
+            .duration(0)
+            .delay(function (index, item) { return item * 150; })
+            .attr("y", function (t) { return y(t.value); })
+            .attr("height", function (t) { return height - y(t.value); });
+
+        basicGroup.selectAll(".label")
+            .data(dataset)
+            .enter()
+            .append("text")
+            .attr("class", "label")
+            .style("display", function (t) { return t.value === null ? "none" : null; })
+            .attr("x", (function (t) { return x(t.year) + (x.bandwidth() / 2) - 15; }))
+            .style("fill", function (t) { if (t.year == "2018") { return "#f26c23"; } else { return "#898989"; } })
+            .style("font", function (t) { if (t.year == "2018") { return "16px Lato"; } })
+            .attr("y", function (t) { return height; })
+            .attr("height", 0)
+            .transition()
+            .duration(0)
+            .delay(function (index, item) { return item * 150; })
+            .text(function (t) { return d3.format(".0%")(t.value); })
+            .attr("y", function (t) { return y(t.value) + .1; })
+            .attr("dy", "-.7em");
+    </script>
+</body>
+
+</html>

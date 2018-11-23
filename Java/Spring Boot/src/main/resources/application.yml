@@ -13,13 +13,13 @@ spring:
     username: root
     password: Pass#word1
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:5723/demo?useSSL=false&characterEncoding=utf8
+    url: jdbc:mysql://localhost:5723/gathercuvette?useSSL=false&characterEncoding=utf8
   freemarker:
-    suffix: .ftl                                                                 #后缀名
-    cache: false                                                            #启用缓存
-    enabled: true                                                         #是否启用
-    charset: UTF-8                                                        #输出编码
-    content-type: text/html                                            #输出类型
-    template-loader-path: classpath:/templates/             #模板未知
+    suffix: .ftl                                    #后缀名
+    cache: false                                    #启用缓存
+    enabled: true                                   #是否启用
+    charset: UTF-8                                  #输出编码
+    content-type: text/html                         #输出类型
+    template-loader-path: classpath:/templates/     #模板位置
 mybatis:
   typeAliasesPackage: com.hanhf.demo.domain #Mybatis
