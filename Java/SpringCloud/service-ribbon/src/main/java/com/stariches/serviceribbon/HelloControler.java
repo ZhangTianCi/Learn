@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+
 @RestController
 public class HelloControler {
 
@@ -12,7 +14,7 @@ public class HelloControler {
 	HelloService helloService;
 
 	@GetMapping(value = "/hi")
-	public String hi(@RequestParam String name) {
+	public HashMap hi(@RequestParam String name) {
 		return helloService.hiService(name);
 	}
 }

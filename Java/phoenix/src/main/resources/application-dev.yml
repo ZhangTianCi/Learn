@@ -1,0 +1,11 @@
+server:
+  port: 7058
+  servlet:
+    context-path: /
+
+spring:
+  datasource:
+    name: devDataSource
+    url: jdbc:mysql://154.8.161.43:3306/BigData?useSSL=false&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&autoReconnect=true
+    username: root
+    password: Pass#word1
